@@ -15,8 +15,8 @@ export default function RootLayout() {
           }}
         />
 
-          {/* movie/[id] is dynamic route therefore explicitly define it */}
-        <Stack.Screen 
+        {/* movie/[id] is dynamic route therefore explicitly define it */}
+        <Stack.Screen
           name="movie/[id]"
           options={{
             headerShown: false,
