@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
-import React from 'react'
 import { Tabs } from 'expo-router'
+import TabIcon from '@/app/components/layout/TabIcon'
+import { icons } from '@/constants/icons'
 
 export default function TabsLayout() {
   return (
@@ -11,7 +12,7 @@ export default function TabsLayout() {
           title: 'index',
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-
+            <TabIcon focused={focused} icon={icons.home} title="Home" />
           )
         }}
       />
