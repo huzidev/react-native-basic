@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function TabsLayout() {
+export default function save() {
   return (
     <View>
-      <Text>_layout</Text>
+      <Text>save</Text>
     </View>
   )
 }
