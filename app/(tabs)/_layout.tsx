@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { Tabs } from 'expo-router'
 import TabIcon from '@/app/components/layout/TabIcon'
 import { icons } from '@/constants/icons'
@@ -26,6 +26,32 @@ const tabs = [
   },
 ]
 
+export default function TabsLayout() {
+  return (
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarItemStyle: styles.tabBarItem,
+        tabBarStyle: styles.tabBar,
+      }}
+    >
+      {tabs.map(({ name, title, icon }) => (
+        <Tabs.Screen
+          key={name}
+          name={name}
+          options={{
+            title: title,
+            headerShown: false,
+            tabBarIcon: ({ focused }) => (
+              <TabIcon focused={focused} icon={icon} title={title} />
+            ),
+          }}
+        />
+      ))}
+    </Tabs>
+  )
+}
+
 const styles = StyleSheet.create({
   tabBarItem: {
     width: "100%",
@@ -45,44 +71,3 @@ const styles = StyleSheet.create({
     borderColor: "#0F0D23",
   },
 });
-
-export default function TabsLayout() {
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarShowLabel: false,
-        tabBarItemStyle: {
-          width: "100%",
-          height: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        },
-        tabBarStyle: {
-          backgroundColor: "#0F0D23",
-          borderRadius: 50,
-          marginHorizontal: 20,
-          marginBottom: 36,
-          height: 52,
-          position: "absolute",
-          overflow: "hidden",
-          borderWidth: 1,
-          borderColor: "#0F0D23",
-        }
-      }}
-    >
-      {tabs.map(({ name, title, icon }) => (
-        <Tabs.Screen
-          key={name}
-          name={name}
-          options={{
-            title: title,
-            headerShown: false,
-            tabBarIcon: ({ focused }) => (
-              <TabIcon focused={focused} icon={icon} title={title} />
-            ),
-          }}
-        />
-      ))}
-    </Tabs>
-  )
-}
