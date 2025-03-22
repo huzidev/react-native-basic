@@ -9,7 +9,12 @@ interface Props {
   onPress?: () => void;
 }
 
-const SearchBar = ({ placeholder, value, onChangeText, onPress }: Props) => {
+export default function SearchBar({
+  placeholder,
+  value,
+  onChangeText,
+  onPress,
+}: Props) {
   return (
     <View className="flex-row items-center bg-dark-200 rounded-full px-5 py-4">
       <Image
