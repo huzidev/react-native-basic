@@ -1,7 +1,13 @@
 import { images } from "@/constants/images";
-import { ImageBackground, Image, Text, View } from "react-native";
+import { ImageBackground, Image, Text, View, ImageSourcePropType } from "react-native";
 
-export default function TabIcon({ focused, icon, title }: any) {
+interface TabIconProps {
+  focused: boolean;
+  icon: ImageSourcePropType;
+  title: string;
+}
+
+export default function TabIcon({ focused, icon, title }: TabIconProps) {
   return (
   focused ? (
     <ImageBackground
