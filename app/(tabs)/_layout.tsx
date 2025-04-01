@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { Tabs } from 'expo-router'
-import TabIcon from '@/app/components/layout/TabIcon'
+import TabIcon from '@/components/layout/TabIcon'
 import { icons } from '@/constants/icons'
 
 const tabs = [
