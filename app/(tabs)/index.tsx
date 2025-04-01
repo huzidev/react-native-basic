@@ -13,6 +13,7 @@ import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import SearchBar from "@/components/general/SearchBar";
 import { useRouter } from "expo-router";
+import MovieCard from "@/components/movie/MovieCard";
 
 export default function index() {
   const { data, loading, error } = useFetch(() => fetchMovies(""));
@@ -55,12 +56,7 @@ export default function index() {
 
               <FlatList
                 data={data}
-                renderItem={({ item }) => (
-                  <View className="bg-white rounded-lg p-4 mb-3">
-                    <Text className="text-black font-bold">{item.title}</Text>
-                    <Text className="text-gray-600">{item.release_date}</Text>
-                  </View>
-                )}
+                renderItem={({ item }) => <MovieCard {...item} />}
               />
             </>
           </View>
