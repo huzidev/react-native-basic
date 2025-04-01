@@ -14,6 +14,7 @@ export default function MovieCard({
   return (
     <Link href={`/movie/${id}`} asChild>
       <TouchableOpacity className="w-[30%]">
+        {/* Update tailwind config for image */}
         <Image 
           source={{
             uri: poster_path 
