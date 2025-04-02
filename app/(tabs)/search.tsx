@@ -1,5 +1,5 @@
 import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { images } from '@/constants/images'
 import useFetch from '@/hooks/useFetch'
 import { fetchMovies } from '@/services/api';
@@ -8,14 +8,29 @@ import { icons } from '@/constants/icons';
 import SearchBar from '@/components/general/SearchBar';
 
 export default function search() {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const {
-    data, 
+    data,
     loading,
     error,
-    refetch
+    refetch: loadMovies,
+    reset,
   } = useFetch(() => fetchMovies(searchQuery), false); // default auto-fetch is false only run when user searches
+
+  // Debounced search effect so we don't call the API on every keystroke
+  // This will wait for 500ms after the user stops typing before calling the API
+  useEffect(() => {
+    const timeout = setTimeout(async () => {
+      if (searchQuery.trim()) {
+        await loadMovies();
+      } else {
+        reset();
+      }
+    }, 500);
+
+    return () => clearTimeout(timeout)
+  }, [searchQuery]);
 
   return (
     <View className="flex-1 bg-primary">
@@ -59,22 +74,20 @@ export default function search() {
             )}
 
             {!loading && !error && searchQuery.trim() && !!data?.length && (
-              <Text className='text-xl text-white font-bold px-5 my-3'>
+              <Text className="text-xl text-white font-bold px-5 my-3">
                 Search results for "{searchQuery}"
               </Text>
             )}
           </>
         }
         ListEmptyComponent={
-          <>
-            {!loading && !error && !data?.length && (
-              <View className="mt-10 px-5">
-                <Text className='text-xl text-white font-bold px-5 my-3'>
-                  No results found for "{searchQuery}"
-                </Text>
-              </View>
-            )}
-          </>
+          !loading && !error && !data?.length ? (
+            <View className="mt-10 px-5">
+              <Text className="text-xl text-white font-bold px-5 my-3">
+                No results found for "{searchQuery}"
+              </Text>
+            </View>
+          ) : null
         }
       />
     </View>
