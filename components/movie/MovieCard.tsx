@@ -5,8 +5,8 @@ import { icons } from '@/constants/icons'
 
 export default function MovieCard({
   id, 
-  poster_path,
   title,
+  poster_path,
   vote_average,
   release_date
 }: Movie) {
@@ -19,7 +19,7 @@ export default function MovieCard({
           source={{
             uri: poster_path
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
-              : "https://placehold.it/500x750.png?text=No+Image+Available",
+              : "https://placehold.co/600x400/1a1a1a/FFFFFF.png",
           }}
           className="w-full h-52 rounded-lg"
           resizeMode="cover"
