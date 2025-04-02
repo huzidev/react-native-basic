@@ -54,7 +54,7 @@ export default function search() {
 
             {error && (
               <Text className="text-red-500 px-5 my-3">
-                Error: {error.message}
+                Error: {error?.message}
               </Text>
             )}
 
@@ -62,6 +62,17 @@ export default function search() {
               <Text className='text-xl text-white font-bold px-5 my-3'>
                 Search results for "{searchQuery}"
               </Text>
+            )}
+          </>
+        }
+        ListEmptyComponent={
+          <>
+            {!loading && !error && !data?.length && (
+              <View className="mt-10 px-5">
+                <Text className='text-xl text-white font-bold px-5 my-3'>
+                  No results found for "{searchQuery}"
+                </Text>
+              </View>
             )}
           </>
         }
