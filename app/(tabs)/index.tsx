@@ -51,7 +51,7 @@ export default function index() {
 
             <>
               <Text className="text-lg text-white font-bold mt-5 mb-3">
-                Lates Movies
+                Latest Movies
               </Text>
 
               <FlatList

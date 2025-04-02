@@ -18,6 +18,8 @@ export default function search() {
     reset,
   } = useFetch(() => fetchMovies(searchQuery), false); // default auto-fetch is false only run when user searches
 
+  console.log("SW what is data", data);
+
   // Debounced search effect so we don't call the API on every keystroke
   // This will wait for 500ms after the user stops typing before calling the API
   useEffect(() => {
@@ -45,6 +47,12 @@ export default function search() {
         renderItem={({ item }) => <MovieCard {...item} />}
         keyExtractor={(item) => item.id.toString()}
         numColumns={3}
+        columnWrapperStyle={{
+          justifyContent: "flex-start",
+          gap: 20,
+          marginVertical: 16,
+        }}
+        contentContainerStyle={{ paddingBottom: 100 }}
         ListHeaderComponent={
           <>
             <View className="w-full flex-row justify-center mt-20 items-center">
@@ -81,10 +89,12 @@ export default function search() {
           </>
         }
         ListEmptyComponent={
-          !loading && !error && !data?.length ? (
-            <View className="mt-10 px-5">
+          !loading && !error ? (
+            <View className="px-5">
               <Text className="text-xl text-white font-bold px-5 my-3">
-                No results found for "{searchQuery}"
+                {searchQuery.trim()
+                  ? `No results found for "${searchQuery}"`
+                  : "Start typing to search for movies"}
               </Text>
             </View>
           ) : null
