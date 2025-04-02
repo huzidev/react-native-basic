@@ -36,8 +36,8 @@ export default function MovieCard({
           </Text>
         </View>
 
-        <View className="flex-row items-center justify-between">
-          <Text className="text-white text-xs font-bold mt-1">
+        <View className="flex-row items-center justify-between mt-1">
+          <Text className="text-xs text-light-300 font-medium">
             {release_date}
           </Text>
           <Text className="text-xs font-medium text-light-300 uppercase">
