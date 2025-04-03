@@ -32,10 +32,10 @@ export async function updateSearchCount(query: string, movie: Movie) {
     } else {
       const response = await database.createDocument( DATABASE_ID, COLLECTION_ID, ID.unique(), {
           searchTerm: query,
-          movie_id: movie?.id,
+          movieId: movie?.id,
           title: movie?.title,
           count: 1,
-          poster_url: `https://image.tmdb.org/t/p/w500${movie?.poster_path}`,
+          posterUrl: `https://image.tmdb.org/t/p/w500${movie?.poster_path}`,
         }
       )
       console.log("What is response on movie create", response);
