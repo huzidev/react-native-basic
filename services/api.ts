@@ -3,7 +3,7 @@ export const TMDB_CONFIG = {
   API_KEY: process.env.TMDB_MOVIE_API_KEY,
   headers: {
     accept: "application/json",
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYjdkNWVlZTE0NzM3ZjNjMzJhZjdlN2U3MmY3ZmQxYSIsIm5iZiI6MTc0MzUxNTAzMS4zNDMwMDAyLCJzdWIiOiI2N2ViZWQ5N2Q3NmMxNTlhMTVmYjE5ZjYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.yOZv5a0eh7zQbWhCRikv3lzEcAmQqJ-BBoMrRUdJC_k`,
+    Authorization: `Bearer ${process.env.TMDB_MOVIE_API_KEY}`,
   },
 };
 
