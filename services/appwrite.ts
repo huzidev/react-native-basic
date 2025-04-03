@@ -46,3 +46,21 @@ export async function updateSearchCount(query: string, movie: Movie) {
     throw new Error("Failed to update search count");
   }
 }
+
+
+export async function getTrendingMovies(): Promise<Movie[] | undefined> {
+  try {
+    const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
+      Query.limit(5),
+      Query.orderDesc("count")
+    ])
+
+    console.log("SW what is result on trending movies", result);
+
+    return result.documents;
+
+  } catch (err) {
+    console.log("Error fetching trending movies", err);
+    return undefined;
+  }
+}
