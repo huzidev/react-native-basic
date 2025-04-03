@@ -11,10 +11,11 @@ const database = new Databases(client);
 
 export async function updateSearchCount(query: string, movie: Movie) {
   try {
+    console.log("Is update search count called");
+    
     const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
       Query.equal("searchTerm", query),
     ]);
-
 
     if (!!result?.documents.length) {
       const existingMovie = result.documents[0];

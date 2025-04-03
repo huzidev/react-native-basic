@@ -1,11 +1,12 @@
-import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { images } from '@/constants/images'
-import useFetch from '@/hooks/useFetch'
-import { fetchMovies } from '@/services/api';
+import SearchBar from '@/components/general/SearchBar';
 import MovieCard from '@/components/movie/MovieCard';
 import { icons } from '@/constants/icons';
-import SearchBar from '@/components/general/SearchBar';
+import { images } from '@/constants/images';
+import useFetch from '@/hooks/useFetch';
+import { fetchMovies } from '@/services/api';
+import { updateSearchCount } from '@/services/appwrite';
+import React, { useEffect, useState } from 'react';
+import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native';
 
 export default function search() {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -18,14 +19,19 @@ export default function search() {
     reset,
   } = useFetch(() => fetchMovies(searchQuery), false); // default auto-fetch is false only run when user searches
 
-  console.log("SW what is data", data);
-
   // Debounced search effect so we don't call the API on every keystroke
   // This will wait for 500ms after the user stops typing before calling the API
   useEffect(() => {
     const timeout = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
+
+        console.log("SW what is data lengrth", data?.[0]);
+
+        if (!!data?.length && data?.[0]) {
+          await updateSearchCount(searchQuery, data[0])
+        }
+
       } else {
         reset();
       }
