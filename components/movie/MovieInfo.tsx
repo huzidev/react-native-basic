@@ -3,7 +3,7 @@ import React from "react";
 
 interface MovieInfoProps {
   label: string;
-  value: string;
+  value?: string | number | null;
 }
 
 export default function MovieInfo({ label, value }: MovieInfoProps) {

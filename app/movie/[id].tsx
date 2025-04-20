@@ -5,6 +5,7 @@ import useFetch from '@/hooks/useFetch';
 import { fetchMovieDetails } from '@/services/api';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { icons } from '@/constants/icons';
+import MovieInfo from '@/components/movie/MovieInfo';
 
 export default function MovieDetails() {
   const router = useRouter();
@@ -50,7 +51,7 @@ export default function MovieDetails() {
             </Text>
             <Text className="text-light-200 text-sm">{movie?.runtime}m</Text>
           </View>
-          
+
           <View className="flex-row items-center bg-dark-100 px-2 py-1 rounded-md gap-x-1 mt-2">
             <Image source={icons.star} className="size-4" />
 
@@ -62,8 +63,26 @@ export default function MovieDetails() {
               ({movie?.vote_count} votes)
             </Text>
           </View>
-        </View>
 
+          <MovieInfo label="Overview" value={movie?.overview} />
+          <MovieInfo
+            label="Genres"
+            value={movie?.genres?.map((v) => v.name).join(" • ") || "N/A"}
+          />
+
+          <View className="flex flex-row justify-between w-1/2">
+            <MovieInfo
+              label="Budget"
+              value={`$${(movie?.budget ?? 0) / 1_000_000} million`}
+            />
+            <MovieInfo
+              label="Revenue"
+              value={`$${Math.round(
+                (movie?.revenue ?? 0) / 1_000_000
+              )} million`}
+            />
+          </View>
+        </View>
       </ScrollView>
     </View>
   );
