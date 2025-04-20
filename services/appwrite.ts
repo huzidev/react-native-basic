@@ -31,7 +31,7 @@ export async function updateSearchCount(query: string, movie: Movie) {
         }
       );
     } else {
-      const response = await database.createDocument( DATABASE_ID, COLLECTION_ID, ID.unique(), {
+      const response = await database.createDocument(DATABASE_ID, COLLECTION_ID, ID.unique(), {
           searchTerm: query,
           movieId: movie?.id,
           title: movie?.title,
