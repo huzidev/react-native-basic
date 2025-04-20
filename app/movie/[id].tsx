@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native'
 import React from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import useFetch from '@/hooks/useFetch';
@@ -20,8 +20,10 @@ export default function MovieDetails() {
   }
 
   return (
-    <View>
-      <Text>This is movie info page details page</Text>
+    <View className='bg-primary flex-1'>
+      <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+
+      </ScrollView>
     </View>
   );
 }

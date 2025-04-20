@@ -72,6 +72,9 @@ export default function index() {
                   showsHorizontalScrollIndicator={false}
                   className="mb-4 mt-3"
                   data={trendingMovies}
+                  contentContainerStyle={{
+                    gap: 26
+                  }}
                   renderItem={({ item, index }) => (
                     <TrendingCard {...item} index={index} />
                   )}
