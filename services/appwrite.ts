@@ -7,11 +7,6 @@ const ENDPOINT = "https://cloud.appwrite.io/v1";
 
 const client = new Client().setEndpoint(ENDPOINT).setProject(PROJECT_ID);
 
-
-console.log("SW what is datbaseID", DATABASE_ID);
-console.log("SW what is collectionID", COLLECTION_ID);
-console.log("SW what is projectID", PROJECT_ID);
-
 const database = new Databases(client);
 
 export async function updateSearchCount(query: string, movie: Movie) {
