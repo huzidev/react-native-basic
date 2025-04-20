@@ -15,6 +15,7 @@ import SearchBar from "@/components/general/SearchBar";
 import { useRouter } from "expo-router";
 import MovieCard from "@/components/movie/MovieCard";
 import { getTrendingMovies } from "@/services/appwrite";
+import TrendingCard from "@/components/movie/TrendingCard";
 
 export default function index() {
   const router = useRouter();
@@ -63,14 +64,17 @@ export default function index() {
 
             {trendingMovies && (
               <View className="mt-10">
-                <Text className="text-lg text-white font-bold mb-3"> 
+                <Text className="text-lg text-white font-bold mb-3">
                   Trending Movies
                 </Text>
-                <FlatList 
+                <FlatList
                   horizontal
                   showsHorizontalScrollIndicator={false}
                   className="mb-4 mt-3"
                   data={trendingMovies}
+                  renderItem={({ item, index }) => (
+                    <TrendingCard {...item} index={index} />
+                  )}
                   keyExtractor={(item) => item.movieId.toString()}
                 />
               </View>
