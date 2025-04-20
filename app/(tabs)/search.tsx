@@ -25,13 +25,6 @@ export default function search() {
     const timeout = setTimeout(async () => {
       if (searchQuery.trim()) {
         await loadMovies();
-
-        console.log("SW what is data lengrth", data?.[0]);
-
-        if (!!data?.length && data?.[0]) {
-          await updateSearchCount(searchQuery, data[0])
-        }
-
       } else {
         reset();
       }
@@ -39,6 +32,13 @@ export default function search() {
 
     return () => clearTimeout(timeout)
   }, [searchQuery]);
+
+
+  useEffect(() => {
+    if (!!data?.length && data?.[0]) {
+      updateSearchCount(searchQuery, data[0]);
+    }
+  }, [data])
 
   return (
     <View className="flex-1 bg-primary">
