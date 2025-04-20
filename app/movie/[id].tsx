@@ -82,6 +82,14 @@ export default function MovieDetails() {
               )} million`}
             />
           </View>
+
+          <MovieInfo
+            label="Production Companies"
+            value={
+              movie?.production_companies?.map((c) => c.name).join(" • ") ||
+              "N/A"
+            }
+          />
         </View>
       </ScrollView>
     </View>
