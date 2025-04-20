@@ -4,7 +4,7 @@ import React from 'react'
 export default function MovieInfo() {
   return (
     <View>
-      <Text>This is movie info page</Text>
+      <Text>This is movie info page details page</Text>
     </View>
   );
 }
