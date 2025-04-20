@@ -14,10 +14,22 @@ import { images } from "@/constants/images";
 import SearchBar from "@/components/general/SearchBar";
 import { useRouter } from "expo-router";
 import MovieCard from "@/components/movie/MovieCard";
+import { getTrendingMovies } from "@/services/appwrite";
 
 export default function index() {
-  const { data, loading, error } = useFetch(() => fetchMovies(""));
   const router = useRouter();
+
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+  } = useFetch(() => fetchMovies(""));
+
+  const {
+    data: trendingMovies,
+    loading: trendingLoading,
+    error: trendingError,
+  } = useFetch(getTrendingMovies);
 
   return (
     <View className="flex-1 bg-primary">
@@ -34,14 +46,14 @@ export default function index() {
       >
         <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto" />
 
-        {loading ? (
+        {moviesLoading || trendingLoading ? (
           <ActivityIndicator
             size="large"
             color="#0000ff"
             className="mt-10 self-center"
           />
-        ) : error ? (
-          <Text>Error : {error?.message}</Text>
+        ) : moviesError || trendingError ? (
+          <Text>Error : {moviesError?.message || trendingError?.message}</Text>
         ) : (
           <View className="flex-1 mt-5">
             <SearchBar
@@ -49,13 +61,19 @@ export default function index() {
               placeholder="Search for a movie"
             />
 
+            {trendingMovies && (
+              <FlatList 
+                data={trendingMovies}
+              />
+            )}
+
             <>
               <Text className="text-lg text-white font-bold mt-5 mb-3">
                 Latest Movies
               </Text>
 
               <FlatList
-                data={data}
+                data={movies}
                 renderItem={({ item }) => <MovieCard {...item} />}
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={3}
@@ -63,7 +81,7 @@ export default function index() {
                   justifyContent: "flex-start",
                   gap: 20,
                   paddingRight: 5,
-                  marginBottom: 10
+                  marginBottom: 10,
                 }}
                 className="mt-2 pb-32"
                 scrollEnabled={false}

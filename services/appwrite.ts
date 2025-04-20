@@ -48,7 +48,7 @@ export async function updateSearchCount(query: string, movie: Movie) {
   }
 }
 
-export async function getTrendingMovies(): Promise<TrendingMovie[] | undefined> {
+export async function getTrendingMovies(): Promise<TrendingMovie[] | []> {
   try {
     const result = await database.listDocuments(DATABASE_ID, COLLECTION_ID, [
       Query.limit(5),
@@ -60,6 +60,6 @@ export async function getTrendingMovies(): Promise<TrendingMovie[] | undefined> 
     return result.documents as unknown as TrendingMovie[];
   } catch (err) {
     console.log("Error fetching trending movies", err);
-    return undefined;
+    return [];
   }
 }
