@@ -5,8 +5,8 @@ import { StatusBar } from "react-native";
 export default function RootLayout() {
   return (
     <>
+      {/* StatusBar component must be outside of Stack */}
       <StatusBar hidden={true} />
-
       <Stack>
         <Stack.Screen
           name="(tabs)"
