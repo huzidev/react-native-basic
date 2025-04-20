@@ -35,7 +35,7 @@ export default function search() {
       } else {
         reset();
       }
-    }, 500);
+    }, 1000);
 
     return () => clearTimeout(timeout)
   }, [searchQuery]);
