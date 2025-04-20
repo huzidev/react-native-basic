@@ -71,8 +71,6 @@ export default function index() {
                   showsHorizontalScrollIndicator={false}
                   className="mb-4 mt-3"
                   data={trendingMovies}
-                  renderItem={({ item }) => (
-                  )}
                   keyExtractor={(item) => item.movieId.toString()}
                 />
               </View>
