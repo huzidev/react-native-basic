@@ -11,6 +11,7 @@ import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native';
 export default function search() {
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  console.log("SW what is searchQuery", searchQuery);
   const {
     data,
     loading,
