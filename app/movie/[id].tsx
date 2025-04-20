@@ -50,7 +50,20 @@ export default function MovieDetails() {
             </Text>
             <Text className="text-light-200 text-sm">{movie?.runtime}m</Text>
           </View>
+          
+          <View className="flex-row items-center bg-dark-100 px-2 py-1 rounded-md gap-x-1 mt-2">
+            <Image source={icons.star} className="size-4" />
+
+            <Text className="text-white font-bold text-sm">
+              {Math.round(movie?.vote_average ?? 0)}/10
+            </Text>
+
+            <Text className="text-light-200 text-sm">
+              ({movie?.vote_count} votes)
+            </Text>
+          </View>
         </View>
+
       </ScrollView>
     </View>
   );
