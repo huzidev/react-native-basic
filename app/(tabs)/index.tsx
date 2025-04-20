@@ -62,9 +62,20 @@ export default function index() {
             />
 
             {trendingMovies && (
-              <FlatList 
-                data={trendingMovies}
-              />
+              <View className="mt-10">
+                <Text className="text-lg text-white font-bold mb-3"> 
+                  Trending Movies
+                </Text>
+                <FlatList 
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  className="mb-4 mt-3"
+                  data={trendingMovies}
+                  renderItem={({ item }) => (
+                  )}
+                  keyExtractor={(item) => item.movieId.toString()}
+                />
+              </View>
             )}
 
             <>
