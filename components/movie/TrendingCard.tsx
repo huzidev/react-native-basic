@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { Link } from "expo-router";
 import MaskedView from "@react-native-masked-view/masked-view";
+import { images } from "@/constants/images";
 
 interface TrendingCardProps {
   movieId: number;
@@ -30,9 +31,15 @@ export default function TrendingCard({
               <Text className="font-bold text-white text-6xl">{index + 1}</Text>
             }
           >
-            
+            <Image
+              source={images.rankingGradient}
+              className="size-14"
+              resizeMode="cover"
+            />
           </MaskedView>
         </View>
+
+        <Text className="text-sm font-bold mt-2 text-light-200" numberOfLines={2}>{title}</Text>
       </TouchableOpacity>
     </Link>
   );
